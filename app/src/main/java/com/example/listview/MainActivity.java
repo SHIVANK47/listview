@@ -1,16 +1,16 @@
 package com.example.listview;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
   ListView listView;
-  int[] arrNO = new int[]{1,2,3,4,5};
     ArrayList<String> arrNames = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,5 +34,10 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplication(), android.R.layout.simple_list_item_1,arrNames);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            if (position==0) {
+                Toast.makeText(MainActivity.this, "Click first item", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
